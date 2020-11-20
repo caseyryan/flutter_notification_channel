@@ -42,6 +42,8 @@ class FlutterNotificationChannel {
   /// this channel should vibrate
   /// [enableSound] whether this notification should play a sound
   /// if you pass "sound": "default" when sending a notification
+  /// [showBadge] Sets whether notifications posted to this channel 
+  /// can appear as application icon badges in a Launcher
   static Future<String> registerNotificationChannel({
     @required String id,
     @required String name,
@@ -51,6 +53,7 @@ class FlutterNotificationChannel {
     bool allowBubbles = true,
     bool enableVibration = true,
     bool enableSound = true,
+    bool showBadge = true,
   }) async {
     assert(id != null);
     assert(name != null);
@@ -59,6 +62,7 @@ class FlutterNotificationChannel {
     assert(allowBubbles != null);
     assert(enableVibration != null);
     assert(enableSound != null);
+    assert(showBadge != null);
     assert(visibility != null &&
         visibility >= NotificationVisibility.VISIBILITY_SECRET &&
         visibility <= NotificationVisibility.VISIBILITY_PUBLIC);
@@ -71,6 +75,7 @@ class FlutterNotificationChannel {
       'enableVibration': enableVibration,
       'allowBubbles': allowBubbles,
       'enableSound': enableSound,
+      'showBadge': showBadge,
     };
     String response = await _channel.invokeMethod(
       'registerNotificationChannel',

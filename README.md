@@ -18,6 +18,7 @@ var result = await FlutterNotificationChannel.registerNotificationChannel(
     allowBubbles: true,
     enableVibration: true,
     enableSound: true,
+    showBadge: true,
 );
 print(result);
 ```

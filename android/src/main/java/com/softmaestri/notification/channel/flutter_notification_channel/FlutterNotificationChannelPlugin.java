@@ -51,6 +51,7 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
           boolean allowBubbles = (boolean)call.argument("allowBubbles");
           boolean enableVibration = (boolean)call.argument("enableVibration");
           boolean enableSound = (boolean)call.argument("enableSound");
+          boolean showBadge = (boolean)call.argument("showBadge");
           Log.i(TAG, "Channel Settings: \n" +
             "id:" + id + "\n" +
             "name:" + name + "\n" +
@@ -59,14 +60,14 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
             "visibility:" + visibility + "\n" +
             "allowBubbles:" + allowBubbles + "\n" +
             "enableVibration:" + enableVibration + "\n" +
-            "enableSound:" + enableSound + "\n"
+            "enableSound:" + enableSound
           );
 
 
           NotificationChannel notificationChannel =
                   new NotificationChannel(id, name, importance);
           notificationChannel.setDescription(description);
-          notificationChannel.setShowBadge(true);
+          notificationChannel.setShowBadge(showBadge);
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             notificationChannel.setAllowBubbles(allowBubbles);
           }

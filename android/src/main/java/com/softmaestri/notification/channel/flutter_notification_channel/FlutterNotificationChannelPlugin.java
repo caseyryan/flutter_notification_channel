@@ -1,9 +1,12 @@
 package com.softmaestri.notification.channel.flutter_notification_channel;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.media.AudioAttributes;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -44,20 +47,43 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
           String name = call.argument("name");
           String description = call.argument("description");
           int importance = (int)call.argument("importance");
+          int visibility = (int)call.argument("visibility");
+          boolean allowBubbles = (boolean)call.argument("allowBubbles");
+          boolean enableVibration = (boolean)call.argument("enableVibration");
+          boolean enableSound = (boolean)call.argument("enableSound");
+          Log.i(TAG, "Channel Settings: \n" +
+            "id:" + id + "\n" +
+            "name:" + name + "\n" +
+            "description:" + description + "\n" +
+            "importance:" + importance + "\n" +
+            "visibility:" + visibility + "\n" +
+            "allowBubbles:" + allowBubbles + "\n" +
+            "enableVibration:" + enableVibration + "\n" +
+            "enableSound:" + enableSound + "\n"
+          );
+
+
           NotificationChannel notificationChannel =
                   new NotificationChannel(id, name, importance);
           notificationChannel.setDescription(description);
-
+          notificationChannel.setShowBadge(true);
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            notificationChannel.setAllowBubbles(allowBubbles);
+          }
+          notificationChannel.setLockscreenVisibility(visibility);
+          notificationChannel.enableVibration(enableVibration);
+          if (enableSound) {
+            AudioAttributes attributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                    .build();
+            notificationChannel.setSound(Settings.System.DEFAULT_NOTIFICATION_URI, attributes);
+          }
           NotificationManager notificationManager =
                   (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
           notificationManager.createNotificationChannel(notificationChannel);
           result.success(
-        "Notification channel with id: " + id +
-              ", name: " + name +
-              ", description: " + description +
-              ", importance: " + importance + 
-              " registered successfully!"
+        "Notification channel has been registered successfully!"
           );
         }
         catch (Exception e) {

@@ -53,14 +53,15 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
           boolean enableSound = (boolean)call.argument("enableSound");
           boolean showBadge = (boolean)call.argument("showBadge");
           Log.i(TAG, "Channel Settings: \n" +
-            "id:" + id + "\n" +
-            "name:" + name + "\n" +
-            "description:" + description + "\n" +
-            "importance:" + importance + "\n" +
-            "visibility:" + visibility + "\n" +
-            "allowBubbles:" + allowBubbles + "\n" +
-            "enableVibration:" + enableVibration + "\n" +
-            "enableSound:" + enableSound
+            "id: " + id + "\n" +
+            "name: " + name + "\n" +
+            "description: " + description + "\n" +
+            "importance: " + importance + "\n" +
+            "visibility: " + visibility + "\n" +
+            "allowBubbles: " + allowBubbles + "\n" +
+            "showBadge: " + showBadge + "\n" +
+            "enableVibration: " + enableVibration + "\n" +
+            "enableSound: " + enableSound
           );
 
 

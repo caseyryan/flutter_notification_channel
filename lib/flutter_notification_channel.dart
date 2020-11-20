@@ -42,7 +42,7 @@ class FlutterNotificationChannel {
   /// this channel should vibrate
   /// [enableSound] whether this notification should play a sound
   /// if you pass "sound": "default" when sending a notification
-  /// [showBadge] Sets whether notifications posted to this channel 
+  /// [showBadge] Sets whether notifications posted to this channel
   /// can appear as application icon badges in a Launcher
   static Future<String> registerNotificationChannel({
     @required String id,

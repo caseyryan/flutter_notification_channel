@@ -1,6 +1,6 @@
 name: flutter_notification_channel
 description: A plugin for setting up notification channels on android
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/caseyryan/flutter_notification_channel
 
 environment:

@@ -1,3 +1,5 @@
+## 1.0.2
+- added showBadge parameter
 ## 1.0.1
 - Added more description
 ## 1.0.0

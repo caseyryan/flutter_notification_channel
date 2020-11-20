@@ -32,10 +32,11 @@ class _MyAppState extends State<MyApp> {
                   print('start registering');
                   var result = await FlutterNotificationChannel
                       .registerNotificationChannel(
-                          description: 'My test channel',
-                          id: 'com.softmaestri.testchannel',
-                          importance: NotificationImportance.IMPORTANCE_HIGH,
-                          name: 'Flutter channel test name');
+                    description: 'My test channel',
+                    id: 'com.softmaestri.testchannel',
+                    importance: NotificationImportance.IMPORTANCE_HIGH,
+                    name: 'Flutter channel test name',
+                  );
                   print('Result: $result');
                 },
                 child: Text('Register channel'),

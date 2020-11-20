@@ -5,7 +5,6 @@ description: firebase_messaging version 7.0.3 (current) and
               made merely for the purpose of creation a notification channel with 
               difference importance. The channel then can be used in firebase
 version: 0.0.1
-author: Serov Konstantin
 homepage: https://github.com/caseyryan/flutter_notification_channel
 
 environment:

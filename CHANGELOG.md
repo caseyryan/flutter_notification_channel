@@ -1,3 +1,5 @@
+## 1.0.1
+- Added more description
 ## 1.0.0
 - Other configuration for messages. See example
 ## 0.0.5

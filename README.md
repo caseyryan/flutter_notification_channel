@@ -22,5 +22,22 @@ var result = await FlutterNotificationChannel.registerNotificationChannel(
 print(result);
 ```
 
+Then, when you send a message to firebase like this, specify your android_channel_id and sound: "default" in order to play a default sound if you set "enableSound" in plugin. If you don't do this, the sound wont play at all on android 9 (I have no idea why)
+```
+{
+  "notification": {
+    "title": "Your message title",
+    "body": "Your message body",
+    "android_channel_id": "your_channel_id",
+    "sound": "default"
+  },
+  "data": {
+    "click_action" : "FLUTTER_NOTIFICATION_CLICK",
+  },
+  "priority": "high",
+  "content_available": true,
+  "to": "YOUR_FIREBASE_PUSH_TOKEN_GOES_HERE"
+}
+```
 
 

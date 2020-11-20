@@ -1,3 +1,2 @@
 ## 0.0.1
-
-* TODO: Describe initial release.
+- Simply allows to register notifications channels on Android. That's it.

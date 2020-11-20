@@ -12,12 +12,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +30,12 @@ class _MyAppState extends State<MyApp> {
               FlatButton(
                 onPressed: () async {
                   print('start registering');
-                  var result = await FlutterNotificationChannel.registerNotificationChannel(
-                    description: 'My test channel',
-                    id: 'com.softmaestri.testchannel',
-                    importance: NotificationImportance.IMPORTANCE_HIGH,
-                    name: 'Flutter channel test name'
-                  );
+                  var result = await FlutterNotificationChannel
+                      .registerNotificationChannel(
+                          description: 'My test channel',
+                          id: 'com.softmaestri.testchannel',
+                          importance: NotificationImportance.IMPORTANCE_HIGH,
+                          name: 'Flutter channel test name');
                   print('Result: $result');
                 },
                 child: Text('Register channel'),

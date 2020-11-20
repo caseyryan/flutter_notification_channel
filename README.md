@@ -1,15 +1,24 @@
 # flutter_notification_channel
 
-A new flutter plugin project.
+This plugin is made to register custom notification channels on Android.
+Why is it necessary? E.g. flutter firebase_messaging version 7.0.3 (current) and 
+lower do not allow registering a custom channel for notification, 
+thus notifications don't play any sounds. This plugin is 
+made merely for the purpose of creation a notification channel with 
+difference importance. The channel then can be used in firebase
 
-## Getting Started
+## How to use
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Simply call it like this
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+var result = await FlutterNotificationChannel.registerNotificationChannel(
+    description: 'Your channel description',
+    id: 'your_channel_id',
+    importance: NotificationImportance.IMPORTANCE_HIGH,
+    name: 'Your channel name'
+);
+print(result);
+```
+
 

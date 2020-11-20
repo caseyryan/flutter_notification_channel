@@ -1,5 +1,4 @@
 class NotificationVisibility {
-
   /*
   * Notification visibility: Show this notification in its entirety on all lockscreens.
   *

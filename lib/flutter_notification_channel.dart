@@ -25,9 +25,9 @@ class FlutterNotificationChannel {
   /// This controls how interruptive notifications posted to this channel are
   /// it is one of the constants from NotificationImportance class
   /// [visibility]Sets whether notifications posted to this channel appear on the lockscreen or not, and if so,
-  /// whether they appear in a redacted form. See e.g. 
+  /// whether they appear in a redacted form. See e.g.
   /// Only modifiable by the system and notification ranker
-  /// [allowBubble] IMPORTANT! Will take effect only on sdk version 29+ 
+  /// [allowBubble] IMPORTANT! Will take effect only on sdk version 29+
   /// and will be silently ignored on any prior versions
   /// Sets whether notifications posted to this
   /// channel can appear outside of the notification
@@ -38,7 +38,7 @@ class FlutterNotificationChannel {
   /// <p>Only modifiable before the channel is submitted to
   /// {@link NotificationManager#createNotificationChannel(NotificationChannel)}.</p>
   /// @see Notification#getBubbleMetadata()
-  /// [enableVibration] Sets whether notification posted to 
+  /// [enableVibration] Sets whether notification posted to
   /// this channel should vibrate
   /// [enableSound] whether this notification should play a sound
   /// if you pass "sound": "default" when sending a notification

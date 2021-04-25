@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_notification_channel/notification_visibility.dart';
 
@@ -45,31 +44,22 @@ class FlutterNotificationChannel {
   /// [showBadge] Sets whether notifications posted to this channel
   /// can appear as application icon badges in a Launcher
   static Future<String> registerNotificationChannel({
-    @required String id,
-    @required String name,
-    @required String description,
-    @required int importance,
+    required String id,
+    required String name,
+    required String description,
+    required int importance,
     int visibility = NotificationVisibility.VISIBILITY_PUBLIC,
     bool allowBubbles = true,
     bool enableVibration = true,
     bool enableSound = true,
     bool showBadge = true,
   }) async {
-    assert(id != null);
-    assert(name != null);
-    assert(description != null);
-    assert(importance != null);
-    assert(allowBubbles != null);
-    assert(enableVibration != null);
-    assert(enableSound != null);
-    assert(showBadge != null);
-    assert(visibility != null &&
-        visibility >= NotificationVisibility.VISIBILITY_SECRET &&
+    assert(visibility >= NotificationVisibility.VISIBILITY_SECRET &&
         visibility <= NotificationVisibility.VISIBILITY_PUBLIC);
     var params = {
       'id': id,
-      'name': name ?? '',
-      'description': description ?? '',
+      'name': name,
+      'description': description,
       'importance': importance,
       'visibility': visibility,
       'enableVibration': enableVibration,

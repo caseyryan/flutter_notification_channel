@@ -1,3 +1,5 @@
+## 2.0.0
+Migrated to null-safety
 ## 1.0.2
 - added showBadge parameter
 ## 1.0.1

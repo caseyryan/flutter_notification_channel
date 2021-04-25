@@ -3,5 +3,8 @@
 
 .packages
 .pub/
+./fvm
 
 build/
+.fvm/fvm_config.json
+.fvm/flutter_sdk

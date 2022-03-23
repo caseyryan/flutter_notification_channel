@@ -52,6 +52,7 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
           boolean enableVibration = (boolean)call.argument("enableVibration");
           boolean enableSound = (boolean)call.argument("enableSound");
           boolean showBadge = (boolean)call.argument("showBadge");
+          String customSound = call.argument("customSound");
           Log.i(TAG, "Channel Settings: \n" +
             "id: " + id + "\n" +
             "name: " + name + "\n" +
@@ -74,12 +75,18 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
           }
           notificationChannel.setLockscreenVisibility(visibility);
           notificationChannel.enableVibration(enableVibration);
-          if (enableSound) {
+          if (enableSound || customSound != null) {
             AudioAttributes attributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                     .build();
-            notificationChannel.setSound(Settings.System.DEFAULT_NOTIFICATION_URI, attributes);
+            String uri;
+            if (customSound == null) {
+              uri = Settings.System.DEFAULT_NOTIFICATION_URI;
+            } else {
+              uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/raw/" + customSound);
+            }
+            notificationChannel.setSound(uri, attributes);
           }
           NotificationManager notificationManager =
                   (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

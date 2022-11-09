@@ -65,9 +65,13 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
           );
 
 
+          NotificationManager notificationManager =
+                  (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+          notificationManager.createNotificationChannelGroup(NotificationChannelGroup(id, name));
           NotificationChannel notificationChannel =
                   new NotificationChannel(id, name, importance);
           notificationChannel.setDescription(description);
+          notificationChannel.setGroup(id);
           notificationChannel.setShowBadge(showBadge);
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             notificationChannel.setAllowBubbles(allowBubbles);
@@ -81,8 +85,6 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
                     .build();
             notificationChannel.setSound(Settings.System.DEFAULT_NOTIFICATION_URI, attributes);
           }
-          NotificationManager notificationManager =
-                  (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
           notificationManager.createNotificationChannel(notificationChannel);
           result.success(
         "Notification channel has been registered successfully!"

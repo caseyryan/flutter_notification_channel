@@ -1,3 +1,5 @@
+## 2.0.1
+Added support for <customSound>
 ## 2.0.0
 Migrated to null-safety
 ## 1.0.2

@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.media.AudioAttributes;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
@@ -52,6 +53,7 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
           boolean enableVibration = (boolean)call.argument("enableVibration");
           boolean enableSound = (boolean)call.argument("enableSound");
           boolean showBadge = (boolean)call.argument("showBadge");
+          String customSound = call.argument("customSound");
           Log.i(TAG, "Channel Settings: \n" +
             "id: " + id + "\n" +
             "name: " + name + "\n" +
@@ -61,9 +63,9 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
             "allowBubbles: " + allowBubbles + "\n" +
             "showBadge: " + showBadge + "\n" +
             "enableVibration: " + enableVibration + "\n" +
-            "enableSound: " + enableSound
+            "enableSound: " + enableSound + "\n" +
+            "customSound: " + customSound
           );
-
 
           NotificationChannel notificationChannel =
                   new NotificationChannel(id, name, importance);
@@ -74,19 +76,24 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
           }
           notificationChannel.setLockscreenVisibility(visibility);
           notificationChannel.enableVibration(enableVibration);
-          if (enableSound) {
+          if (enableSound || customSound != null) {
             AudioAttributes attributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                     .build();
-            notificationChannel.setSound(Settings.System.DEFAULT_NOTIFICATION_URI, attributes);
+            Uri uri;
+            if (customSound == null) {
+              uri = Settings.System.DEFAULT_NOTIFICATION_URI;
+            } else {
+              uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/raw/" + customSound);
+            }
+            Log.i(TAG, "Sound uri: " + uri.toString() + " \n");
+            notificationChannel.setSound(uri, attributes);
           }
           NotificationManager notificationManager =
                   (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
           notificationManager.createNotificationChannel(notificationChannel);
-          result.success(
-        "Notification channel has been registered successfully!"
-          );
+          result.success("Notification channel has been registered successfully!");
         }
         catch (Exception e) {
           Log.e(TAG, e.getMessage());

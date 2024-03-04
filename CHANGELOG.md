@@ -1,3 +1,6 @@
+## 3.0.0
+Merged https://github.com/caseyryan/flutter_notification_channel/pull/4#issuecomment-1975733550 
+Updated flutter and dart restrictions
 ## 2.0.1
 Added support for <customSound>
 ## 2.0.0

@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: [
-              FlatButton(
+              MaterialButton(
                 onPressed: () async {
                   print('start registering');
                   var result = await FlutterNotificationChannel

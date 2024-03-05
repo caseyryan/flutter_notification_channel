@@ -3,12 +3,14 @@ import 'package:flutter_notification_channel/flutter_notification_channel.dart';
 import 'package:flutter_notification_channel/notification_importance.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -29,17 +31,17 @@ class _MyAppState extends State<MyApp> {
             children: [
               MaterialButton(
                 onPressed: () async {
-                  print('start registering');
-                  var result = await FlutterNotificationChannel
+                  debugPrint('start registering');
+                  var result = await FlutterNotificationChannel()
                       .registerNotificationChannel(
                     description: 'My test channel',
                     id: 'com.softmaestri.testchannel',
                     importance: NotificationImportance.IMPORTANCE_HIGH,
                     name: 'Flutter channel test name',
                   );
-                  print('Result: $result');
+                  debugPrint('Result: $result');
                 },
-                child: Text('Register channel'),
+                child: const Text('Register channel'),
               )
             ],
           ),

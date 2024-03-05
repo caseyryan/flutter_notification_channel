@@ -1,14 +1,19 @@
 import Flutter
 import UIKit
 
-public class SwiftFlutterNotificationChannelPlugin: NSObject, FlutterPlugin {
+public class FlutterNotificationChannelPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "flutter_notification_channel", binaryMessenger: registrar.messenger())
-    let instance = SwiftFlutterNotificationChannelPlugin()
+    let instance = FlutterNotificationChannelPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+    switch call.method {
+    case "getPlatformVersion":
+      result("iOS " + UIDevice.current.systemVersion)
+    default:
+      result(FlutterMethodNotImplemented)
+    }
   }
 }

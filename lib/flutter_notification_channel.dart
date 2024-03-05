@@ -1,17 +1,8 @@
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_notification_channel/notification_visibility.dart';
 
+import 'flutter_notification_channel_platform_interface.dart';
+
 class FlutterNotificationChannel {
-  static const MethodChannel _channel =
-      const MethodChannel('flutter_notification_channel');
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-
   /// [id] The id of the channel. Must be unique per package.
   /// The value may be truncated if it is too long
   /// [name] The user visible name of the channel.
@@ -44,7 +35,7 @@ class FlutterNotificationChannel {
   /// [showBadge] Sets whether notifications posted to this channel
   /// can appear as application icon badges in a Launcher
   /// [customSound] optional name of sound resource (located in android/src/main/res/raw)
-  static Future<String> registerNotificationChannel({
+  Future<String> registerNotificationChannel({
     required String id,
     required String name,
     required String description,
@@ -55,25 +46,17 @@ class FlutterNotificationChannel {
     bool enableSound = true,
     bool showBadge = true,
     String? customSound,
-  }) async {
-    assert(visibility >= NotificationVisibility.VISIBILITY_SECRET &&
-        visibility <= NotificationVisibility.VISIBILITY_PUBLIC);
-    var params = {
-      'id': id,
-      'name': name,
-      'description': description,
-      'importance': importance,
-      'visibility': visibility,
-      'enableVibration': enableVibration,
-      'allowBubbles': allowBubbles,
-      'enableSound': enableSound,
-      'showBadge': showBadge,
-      'customSound': customSound,
-    };
-    String response = await _channel.invokeMethod(
-      'registerNotificationChannel',
-      params,
-    );
-    return response;
-  }
+  }) =>
+      FlutterNotificationChannelPlatform.instance.registerNotificationChannel(
+        id: id,
+        name: name,
+        description: description,
+        importance: importance,
+        visibility: visibility,
+        allowBubbles: allowBubbles,
+        enableVibration: enableVibration,
+        enableSound: enableSound,
+        showBadge: showBadge,
+        customSound: customSound,
+      );
 }

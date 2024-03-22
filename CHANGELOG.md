@@ -1,3 +1,6 @@
+## 3.1.0
+- Merged PR https://github.com/caseyryan/flutter_notification_channel/pull/7 
+- Removed test to support lower flutter versions
 ## 3.0.1
 
 Breaking change: Must call `FlutterNotificationChannel().registerNotificationChannel(...)`

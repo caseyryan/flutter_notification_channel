@@ -1,3 +1,6 @@
+## 3.1.1
+- Merged PR https://github.com/caseyryan/flutter_notification_channel/pull/10
+to fix this https://github.com/caseyryan/flutter_notification_channel/issues/9
 ## 3.1.0
 - Merged PR https://github.com/caseyryan/flutter_notification_channel/pull/7 
 - Removed test to support lower flutter versions

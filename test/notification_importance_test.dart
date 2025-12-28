@@ -20,15 +20,19 @@ void main() {
         NotificationImportance.IMPORTANCE_MAX,
       ];
 
-      expect(NotificationImportance.IMPORTANCE_MAX, 
-             equals(allImportanceLevels.reduce((a, b) => a > b ? a : b)));
+      expect(NotificationImportance.IMPORTANCE_MAX,
+          equals(allImportanceLevels.reduce((a, b) => a > b ? a : b)));
     });
 
     test('should maintain proper ordering', () {
-      expect(NotificationImportance.IMPORTANCE_MIN, lessThan(NotificationImportance.IMPORTANCE_LOW));
-      expect(NotificationImportance.IMPORTANCE_LOW, lessThan(NotificationImportance.IMPORTANCE_DEFAULT));
-      expect(NotificationImportance.IMPORTANCE_DEFAULT, lessThan(NotificationImportance.IMPORTANCE_HIGH));
-      expect(NotificationImportance.IMPORTANCE_HIGH, lessThan(NotificationImportance.IMPORTANCE_MAX));
+      expect(NotificationImportance.IMPORTANCE_MIN,
+          lessThan(NotificationImportance.IMPORTANCE_LOW));
+      expect(NotificationImportance.IMPORTANCE_LOW,
+          lessThan(NotificationImportance.IMPORTANCE_DEFAULT));
+      expect(NotificationImportance.IMPORTANCE_DEFAULT,
+          lessThan(NotificationImportance.IMPORTANCE_HIGH));
+      expect(NotificationImportance.IMPORTANCE_HIGH,
+          lessThan(NotificationImportance.IMPORTANCE_MAX));
     });
   });
 }

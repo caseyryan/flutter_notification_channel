@@ -50,7 +50,8 @@ class _MyAppState extends State<MyApp> {
                   debugPrint('start registering max importance');
                   var result = await FlutterNotificationChannel()
                       .registerNotificationChannel(
-                    description: 'Critical notifications with maximum importance',
+                    description:
+                        'Critical notifications with maximum importance',
                     id: 'com.softmaestri.testchannel.max',
                     importance: NotificationImportance.IMPORTANCE_MAX,
                     name: 'Flutter channel test (MAX)',

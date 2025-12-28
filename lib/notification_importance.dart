@@ -17,4 +17,12 @@ class NotificationImportance {
   * intents.
   */
   static const int IMPORTANCE_HIGH = 4;
+
+  /*
+  * Maximum notification importance: shows everywhere, makes noise, peeks, may use full screen
+  * intents, and is generally more interruptive than IMPORTANCE_HIGH. This is the highest
+  * importance level for notifications and should be used sparingly for the most critical
+  * notifications only.
+  */
+  static const int IMPORTANCE_MAX = 5;
 }

@@ -28,20 +28,39 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MaterialButton(
                 onPressed: () async {
-                  debugPrint('start registering');
+                  debugPrint('start registering high importance');
                   var result = await FlutterNotificationChannel()
                       .registerNotificationChannel(
-                    description: 'My test channel',
-                    id: 'com.softmaestri.testchannel',
+                    description: 'My test channel with high importance',
+                    id: 'com.softmaestri.testchannel.high',
                     importance: NotificationImportance.IMPORTANCE_HIGH,
-                    name: 'Flutter channel test name',
+                    name: 'Flutter channel test (High)',
                   );
                   debugPrint('Result: $result');
                 },
-                child: const Text('Register channel'),
+                child: const Text('Register High Importance Channel'),
+              ),
+              const SizedBox(height: 20),
+              MaterialButton(
+                onPressed: () async {
+                  debugPrint('start registering max importance');
+                  var result = await FlutterNotificationChannel()
+                      .registerNotificationChannel(
+                    description: 'Critical notifications with maximum importance',
+                    id: 'com.softmaestri.testchannel.max',
+                    importance: NotificationImportance.IMPORTANCE_MAX,
+                    name: 'Flutter channel test (MAX)',
+                    enableSound: true,
+                    enableVibration: true,
+                    allowBubbles: true,
+                  );
+                  debugPrint('Result: $result');
+                },
+                child: const Text('Register MAX Importance Channel'),
               )
             ],
           ),
